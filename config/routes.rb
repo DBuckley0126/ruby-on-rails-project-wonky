@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+
   resources :listings
-  resources :categories
   resources :purchases
-  resources :farmers
   resources :users
+
+  resources :farmers do 
+    resources :listings
+  end
+
+  root 'listings#index'
+
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
