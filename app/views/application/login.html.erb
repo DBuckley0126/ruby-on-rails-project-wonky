@@ -1,0 +1,12 @@
+<h1>Welcome to Wonky Veg login</h1>
+<h2>Are you customer or a farmer?</h2>
+
+<div>
+  <h3>Customer</h3>
+  <%= render partial: 'user_login_form', locals: {user: @user} %>
+</div>
+
+<div>
+  <h3>Farmer</h3>
+  <%= render partial: 'farmer_login_form', locals: {farmer: @farmer} %>
+</div>

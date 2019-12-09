@@ -22,26 +22,27 @@ ActiveRecord::Schema.define(version: 2019_11_27_162807) do
   end
 
   create_table "farmers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.string "image"
     t.string "uid"
-    t.string "farm_name"
-    t.string "location"
-    t.text "description"
-    t.boolean "organis_certification"
+    t.string "farm_name", null: false
+    t.string "location", null: false
+    t.text "description", null: false
+    t.boolean "organic_certification", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_farmers_on_email"
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string "title"
-    t.string "measurement"
-    t.float "price"
-    t.integer "farmer_id"
-    t.integer "category_id"
-    t.boolean "organic"
+    t.string "title", null: false
+    t.string "measurement", null: false
+    t.float "price", null: false
+    t.integer "farmer_id", null: false
+    t.integer "category_id", null: false
+    t.boolean "organic", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,13 +55,14 @@ ActiveRecord::Schema.define(version: 2019_11_27_162807) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.string "image"
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email"
   end
 
 end

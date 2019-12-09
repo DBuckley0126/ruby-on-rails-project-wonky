@@ -1,0 +1,9 @@
+<%= form_with model: user do |f| %>
+
+<%= f.text_field :name, autofocus: true, placeholder: 'Name'%><br>
+<%= f.text_field :email :attr, placeholder: "Email"%><br>
+<%= f.password_field :password :attr, placeholder: "Password"%><br>
+<%= f.password_field :password :attr, placeholder: "Comfirm Password"%><br>
+<%= f.submit %>
+  
+<% end %>
