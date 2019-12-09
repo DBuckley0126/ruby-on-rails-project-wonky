@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 2019_11_27_162807) do
     t.string "image"
     t.string "uid"
     t.string "farm_name", null: false
-    t.string "location", null: false
+    t.string "address", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.text "description", null: false
     t.boolean "organic_certification", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -60,6 +62,9 @@ ActiveRecord::Schema.define(version: 2019_11_27_162807) do
     t.string "password_digest", null: false
     t.string "image"
     t.string "uid"
+    t.string "address", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email"

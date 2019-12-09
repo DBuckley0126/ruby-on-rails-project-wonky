@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       render 'application/signup'
     else
       @user.save
-      session[user_id: @user.id]
+      session[:user_id] = @user.id
       redirect_to root_path, notice: 'Account Created'
     end
   end
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   private
 
   def user_strong_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :terms_of_service )
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :address, :terms_of_service )
   end
 
 

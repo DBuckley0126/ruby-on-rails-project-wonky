@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
   resources :listings, only: [:index, :show]
+  resources :sessions
 
   root :to => "listings#index"
   
   get '/signup', to: 'application#signup'
   get '/login', to: 'application#login'
+  get '/logout', to: 'sessions#delete'
 
 
   resources :farmers do

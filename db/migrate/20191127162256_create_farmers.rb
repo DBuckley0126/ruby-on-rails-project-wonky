@@ -7,7 +7,9 @@ class CreateFarmers < ActiveRecord::Migration[6.0]
       t.string :image
       t.string :uid
       t.string :farm_name, null: false
-      t.string :location, null: false
+      t.string :address, null: false
+      t.float :latitude
+      t.float :longitude
       t.text :description, null: false
       t.boolean :organic_certification, null: false
 

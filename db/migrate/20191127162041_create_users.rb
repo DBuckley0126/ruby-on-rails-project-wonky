@@ -6,7 +6,10 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :password_digest, null: false
       t.string :image
       t.string :uid
-      
+      t.string :address, null: false
+      t.float :latitude
+      t.float :longitude
+
       t.timestamps
     end
   end

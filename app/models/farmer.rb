@@ -1,6 +1,9 @@
 class Farmer < ApplicationRecord
   has_secure_password
 
+  geocoded_by :address
+  after_validation :geocode
+
   has_many :listings
   has_many :purchases, through: :listings
   has_many :users, through: :listings
@@ -20,7 +23,7 @@ class Farmer < ApplicationRecord
   validates_strength_of :password, :with => :email, :level => :good
 
   validates :farm_name, presence: { message: 'is required' }
-  validates :location, presence: { message: 'is required' }
+  validates :address, presence: { message: 'is required' }
   validates :description, presence: { message: 'is required' }
 
   validates_acceptance_of :terms_of_service, on: :create

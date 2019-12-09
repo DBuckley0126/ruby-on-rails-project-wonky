@@ -17,8 +17,8 @@
   <p><%= display_first_error(farmer, :farm_name) %></p>
   <%= f.text_field :farm_name, autofocus: true, placeholder: 'Farm Name' %><br>
 
-  <p><%= display_first_error(farmer, :location) %></p>
-  <%= f.text_field :location, autofocus: true, placeholder: 'Location' %><br>
+  <p><%= display_first_error(farmer, :address) %></p>
+  <%= f.text_field :address, autofocus: true, placeholder: 'Full Address' %><br>
 
   <p><%= display_first_error(farmer, :description) %></p>
   <%= f.text_area :description, size: '60x12', autofocus: true, placeholder: 'Description' %><br>

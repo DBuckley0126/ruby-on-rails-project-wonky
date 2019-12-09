@@ -12,6 +12,9 @@
   
   <p><%= display_first_error(user, :password_confirmation) %></p>
   <%= f.password_field :password_confirmation, autofocus: true, placeholder: 'Password Confirmation' %><br>
+
+  <p><%= display_first_error(user, :address) %></p>
+  <%= f.text_field :address, autofocus: true, placeholder: 'Full Address' %><br>
   
   <p><%= display_first_error(user, :terms_of_service) %></p>
   Please accept the terms of service <%= f.check_box :terms_of_service %><br>
