@@ -48,6 +48,7 @@
 
 <br>
 <br>
-<a href=<%="https://www.google.com/maps/place/#{@farmer.latitude},#{@farmer.longitude}/"%>><img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{@farmer.latitude},#{@farmer.longitude}&zoom=10&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@farmer.latitude},#{@farmer.longitude}"%> alt=<%="Google Map of #{@farmer.address}"%>></a><br>
+<h4>Click on map to get directions</h4>
+<a href=<%="https://www.google.com/maps/dir/#{@farmer.latitude},#{@farmer.longitude}/"%>><img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{@farmer.latitude},#{@farmer.longitude}&zoom=10&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@farmer.latitude},#{@farmer.longitude}"%> alt=<%="Google Map of farm location"%>></a><br>
 
-<a href="<%= root_path %>">Home</a>
+<%= link_to "Home", root_path %>

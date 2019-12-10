@@ -1,2 +1,9 @@
 module ListingsHelper
+  def map_marker_maker(user, listings)
+    output_string = "&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{user.latitude},#{user.longitude}"
+    listings.each_with_index do |listing, index|
+      output_string += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:#{index + 1}%7C#{listing.farmer.latitude},#{listing.farmer.longitude}"
+    end
+    return output_string
+  end
 end

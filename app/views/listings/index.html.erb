@@ -15,10 +15,20 @@
   <a href="<%= signup_path %>">Signup</a>
 <% end %>
 
-<% @listings.each do |listing| %>
+<div>
+<p>Filter List</p>
+<%= form_with(url: listings_path, method: 'get', local: true) do %>
+  <%= select_tag(:distance, options_for_select([['5 miles', 5],['10 miles', 10],['15 miles', 15],['20 miles', 20],['30 miles', 30],['40 miles', 40],['50 miles', 50]], params[:distance].to_i), prompt: "Select distance") %>
+  <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name, params[:category_id].to_i), prompt: "Select Category") %>
+  <%= submit_tag(value = "Filter")%>
+<% end %>
+<%= button_to "Refresh", listings_path, method: :get %>
+</div>
+
+<% @listings.each_with_index do |listing, index| %>
 
   <div class="farm_listing">
-    <h3><%= listing.title %></h3>
+    <h3><b><%= index + 1 %>)</b> <%= listing.title %></h3>
     <% if listing.price == 0 %>
       <h4>FREE</h4>
     <% else %>
@@ -35,4 +45,10 @@
 
 <% end %>
 
+<br>
+<br>
 
+<% if @listings.count > 0 %>
+<img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true#{map_marker_maker(current_user, @listings)}"%> alt=<%="Google Map of listing locations"%>>
+
+<% end %>

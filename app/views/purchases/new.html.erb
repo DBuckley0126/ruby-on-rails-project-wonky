@@ -28,7 +28,7 @@
     <%= f.hidden_field :amount, :value => @purchase.amount %>
     <%= f.hidden_field :measurement, :value => @purchase.measurement %>
     <%= f.hidden_field :price, :value => @purchase.price %>
-    <%= f.submit(value = "Comfirm Purchase") %>
+    <%= f.submit(value = "Comfirm Order") %>
   <% end %>
 
   <%= link_to "Cancel", listing_path(@purchase.listing) %>

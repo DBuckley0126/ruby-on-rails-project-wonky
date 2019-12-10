@@ -2,7 +2,15 @@
 class ListingsController < ApplicationController
 
   def index
-    @listings = Listing.all
+    if params.has_key?(:distance) || params.has_key?(:category_id)
+      @listings = Listing.all
+      params[:distance] == "" ? false : @listings = @listings.select{|listing| listing.farmer.distance_to([current_user.latitude, current_user.longitude]) < params[:distance].to_i }
+      params[:category_id] == "" ? false : @listings = @listings.select{|listing| listing.category_id == params[:category_id].to_i}
+      render 'listings/index'
+    else
+      @listings = Listing.all
+      render 'listings/index'
+    end
   end
 
   def show

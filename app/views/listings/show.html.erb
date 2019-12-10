@@ -25,4 +25,11 @@
   </div>
 <% end %>
 
+<br>
+<br>
+<h3>You are <%= @listing.farmer.distance_to([current_user.latitude, current_user.longitude]).to_i %> miles away</h3>
+
+<h4>Click on map to get directions</h4>
+<a href=<%="https://www.google.com/maps/dir/#{@listing.farmer.latitude},#{@listing.farmer.longitude}/"%>><img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{@listing.farmer.latitude},#{@listing.farmer.longitude}&path=#{current_user.latitude},#{current_user.longitude}|#{@listing.farmer.latitude},#{@listing.farmer.longitude}&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{current_user.latitude},#{current_user.longitude}&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C#{@listing.farmer.latitude},#{@listing.farmer.longitude}"%> alt=<%="Google Map of listing location"%>></a><br>
+
 
