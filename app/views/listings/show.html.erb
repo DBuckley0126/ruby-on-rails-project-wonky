@@ -1,0 +1,15 @@
+<h1>View Listing</h1>
+
+<h2><%= @listing.title %></h2>
+
+<h2><%= @listing.category.name %></h2>
+
+<h4><%="£#{@listing.price} per #{@listing.measurement}"%></h4>
+
+<% if @listing.organic %>
+  <h4>This produce has organic certification</h4>
+<% else %>
+  <h4>This produce does not have organic certification, but still tasty!</h4>
+<% end %>
+
+<a href="<%= farmer_path(@listing.farmer) %>">Go to farmer</a>

@@ -1,8 +1,7 @@
 class FarmersController < ApplicationController
 
   def show
-    farmer_redirect_check
-    @farmer = current_user
+    @farmer = Farmer.find_by_id(params[:id])
   end
 
   def create
