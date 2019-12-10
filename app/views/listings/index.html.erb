@@ -1,1 +1,16 @@
 <h1>Listing Index</h1>
+
+<% if current_user %>
+  <h3>Logged in as <%= current_user.name %></h3>
+  <% if user_or_farmer == "farmer"%>
+    <a href="<%= farmer_path(current_user) %>">View Account</a>
+  <% end %>
+  <% if user_or_farmer == "user"%>
+    <a href="<%= user_path(current_user) %>">View Account</a>
+  <% end %>
+
+  <a href="<%= logout_path %>">Log out</a>
+<% else %>
+  <a href="<%= login_path %>">Login</a>
+  <a href="<%= signup_path %>">Signup</a>
+<% end %>

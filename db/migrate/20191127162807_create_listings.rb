@@ -6,7 +6,7 @@ class CreateListings < ActiveRecord::Migration[6.0]
       t.float :price, null: false
       t.integer :farmer_id, null: false
       t.integer :category_id, null: false
-      t.boolean :organic, null: false
+      t.boolean :organic, null: false, :default => 0
 
       t.timestamps
     end

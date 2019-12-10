@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-
+    user_redirect_check
+    @user = current_user
   end
 
   def create
@@ -15,6 +16,25 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: 'Account Created'
     end
   end
+
+  def edit
+    user_redirect_check
+    @user = current_user
+  end
+
+  def update
+    user_redirect_check
+    @user = current_user
+    @user.assign_attributes(user_strong_params)
+    if @user.valid?
+      @user.save
+      redirect_to user_path(@user)
+    else
+      render 'users/edit'
+    end
+  end
+
+
 
   private
 

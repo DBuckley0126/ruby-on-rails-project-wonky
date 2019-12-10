@@ -1,0 +1,10 @@
+<h1>Hi, I am <%= @user.name %></h1>
+<h2>Customer</h2>
+<h2>Joined in <%=@user.created_at.strftime("%Y")%></h2>
+
+<h4>Lives at <%= @user.address %></h4>
+
+<a href=<%="https://www.google.com/maps/place/#{@user.latitude},#{@user.longitude}/"%>><img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{@user.latitude},#{@user.longitude}&zoom=10&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@user.latitude},#{@user.longitude}"%> alt=<%="Google Map of #{@user.address}"%>></a><br>
+
+<a href="<%= edit_user_path(@user) %>">Edit Account</a>
+<a href="<%= root_path %>">Home</a>

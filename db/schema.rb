@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_162807) do
     t.float "price", null: false
     t.integer "farmer_id", null: false
     t.integer "category_id", null: false
-    t.boolean "organic", null: false
+    t.boolean "organic", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

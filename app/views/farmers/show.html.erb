@@ -1,0 +1,24 @@
+<h1>Hi, I am <%= @farmer.name %></h1>
+<h2>Farmer</h2>
+<h2>Joined in <%=@farmer.created_at.strftime("%Y")%></h2>
+
+<a href="<%= new_farmer_listing_path(@farmer) %>">Create listing</a>
+
+<h4>Farm Name</h4>
+<p><%= @farmer.farm_name %></p>
+<h4>Farm Location</h4>
+<p><%= @farmer.address %></p>
+
+<h4>Farm Description<h4>
+<p><%= @farmer.description %><p>
+
+<% if @farmer.organic_certification %>
+  <h4>Your farm has organic certification</h4>
+<% else %>
+  <h4>Your farm does not have organic certification</h4>
+<% end %>
+
+<a href=<%="https://www.google.com/maps/place/#{@farmer.latitude},#{@farmer.longitude}/"%>><img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{@farmer.latitude},#{@farmer.longitude}&zoom=10&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@farmer.latitude},#{@farmer.longitude}"%> alt=<%="Google Map of #{@farmer.address}"%>></a><br>
+
+<a href="<%= edit_farmer_path(@farmer) %>">Edit Account</a>
+<a href="<%= root_path %>">Home</a>

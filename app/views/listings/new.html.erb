@@ -1,0 +1,32 @@
+<h1>Create new listing</h1>
+
+<%= form_with model: @listing, local: true, url: farmer_listings_path do |f| %>
+
+  <%= f.hidden_field :farmer_id, :value => @listing.farmer_id %>
+
+  <p><%= display_first_error(@listing, :title) %></p>
+  <%= f.text_field :title, autofocus: true, placeholder: 'Title' %><br>
+
+  <p><%= display_first_error(@listing, :category_id) %></p>
+  <%= f.collection_select(:category_id, @categories, :id, :name, prompt: "Select Category") %>
+
+  <div id="measurement-radio-container">
+    <p><%= display_first_error(@listing, :measurement) %></p>
+    <label for="grams">Grams</label>
+    <%= f.radio_button(:measurement, "g") %>
+    <label for="kilograms">kilograms</label>
+    <%= f.radio_button(:measurement, "kg") %>
+  </div>
+
+  <p><%= display_first_error(@listing, :price) %></p>
+  £ <%= f.number_field :price, step: 0.01, autofocus: true, placeholder: 'Price per unit of measurement' %><br>
+
+  <% if Farmer.find_by_id(@listing.farmer_id).organic_certification %>
+    <p><%= display_first_error(@listing, :organic_certification) %></p>
+    <p>Is this produce Organic?</p> <%= f.check_box :organic %><br>
+  <% end %>
+
+  <br>
+  <%= f.submit %>
+
+<% end %>

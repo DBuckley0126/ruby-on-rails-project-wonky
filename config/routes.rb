@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :listings, only: [:index, :show]
-  resources :sessions
+  resources :sessions, only: [:create, :delete]
 
   root :to => "listings#index"
   
@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#delete'
 
 
-  resources :farmers do
+  resources :farmers, only: [:show, :create, :edit, :update] do
     resources :listings
     resources :purchases, only: [:index, :show]
   end
 
-  resources :users do
+  resources :users, only: [:show, :create, :edit, :update] do
     resources :purchases
   end
 

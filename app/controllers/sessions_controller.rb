@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
+    
     #session create request coming from user
     if params.key?(:user)
 
@@ -45,16 +46,6 @@ class SessionsController < ApplicationController
         end
       end
     end
-  end
-
-
-
-  def edit
-
-  end
-
-  def update
-
   end
 
   def delete
