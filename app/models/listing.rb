@@ -11,4 +11,8 @@ class Listing < ApplicationRecord
   validates :farmer_id, presence: true
   validates :measurement, presence: { message: 'is required' }
   validates :measurement, inclusion: { in: %w(g kg), message: "is not a valid measurement. Must be 'g' or 'kg'" }
+
+  def organic_check
+    self.farmer.organic_certification && self.organic ? true : false
+  end
 end

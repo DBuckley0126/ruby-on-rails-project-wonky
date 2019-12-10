@@ -3,13 +3,17 @@
 
 <div>
   <h3>Customer</h3>
-  <%= render partial: 'user_login_form', locals: {user: @user} %>
+  <%= form_with model: @user, url: sessions_path, method: :post, local: true do |f| %>
+    <%= render partial: 'user_login_form', locals: {f: f} %>
+  <% end %>
 </div>
 
 <div>
   <h3>Farmer</h3>
-  <%= render partial: 'farmer_login_form', locals: {farmer: @farmer} %>
+  <%= form_with model: @farmer, url: sessions_path, method: :post, local: true do |f| %>
+    <%= render partial: 'farmer_login_form', locals: {f: f} %>
+  <% end %>
 </div>
 
 <h4>Need to create a account?</h4>
-<a href="<%= signup_path %>">Signup</a>
+<%= link_to "Signup", signup_path %>

@@ -1,6 +1,6 @@
 <h1>Edit listing</h1>
 
-<%= form_with model: @listing, local: true, url: farmer_listings_path, method: 'patch' do |f| %>
+<%= form_with model: @listing, local: true, url: farmer_listing_path, method: 'patch' do |f| %>
 
 <%= render partial: 'listing_form', locals: {f: f} %>
 

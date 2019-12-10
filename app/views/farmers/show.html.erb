@@ -7,6 +7,8 @@
   <a href="<%= edit_farmer_path(@farmer) %>">Edit Account</a>
 <% end %>
 
+<br>
+<br>
 <h4>Farm Name</h4>
 <p><%= @farmer.farm_name %></p>
 <h4>Farm Location</h4>
@@ -21,6 +23,31 @@
   <h4>This farm does not have organic certification</h4>
 <% end %>
 
+<br>
+<br>
+<h4>Farm Listings<h4>
+<% @farmer.listings.each do |listing| %>
+
+  <div class="farm_listing">
+    <h3><%= listing.title %></h3>
+
+    <% if listing.price == 0 %>
+      <h4>FREE</h4>
+    <% else %>
+      <h4><%="£#{listing.price} per #{listing.measurement}"%></h4>
+    <% end %>
+
+    <% if listing.organic_check %>
+      <h4>Organic</h4>
+    <% end %>
+
+    <%= link_to "View Listing", farmer_listing_path(@farmer, listing) %>
+  </div>
+
+<% end %>
+
+<br>
+<br>
 <a href=<%="https://www.google.com/maps/place/#{@farmer.latitude},#{@farmer.longitude}/"%>><img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{@farmer.latitude},#{@farmer.longitude}&zoom=10&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@farmer.latitude},#{@farmer.longitude}"%> alt=<%="Google Map of #{@farmer.address}"%>></a><br>
 
 <a href="<%= root_path %>">Home</a>

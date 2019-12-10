@@ -14,3 +14,25 @@
   <a href="<%= login_path %>">Login</a>
   <a href="<%= signup_path %>">Signup</a>
 <% end %>
+
+<% @listings.each do |listing| %>
+
+  <div class="farm_listing">
+    <h3><%= listing.title %></h3>
+    <% if listing.price == 0 %>
+      <h4>FREE</h4>
+    <% else %>
+      <h4><%="£#{listing.price} per #{listing.measurement}"%></h4>
+    <% end %>
+
+    <% if listing.organic_check %>
+      <h4>Organic</h4>
+    <% end %>
+    
+    <%= link_to "View Listing", listing_path(listing) %>
+    <%= link_to "Edit", edit_farmer_listing_path(current_user, listing) if current_user == @farmer %>
+  </div>
+
+<% end %>
+
+

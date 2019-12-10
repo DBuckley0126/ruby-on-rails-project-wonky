@@ -6,10 +6,23 @@
 
 <h4><%="£#{@listing.price} per #{@listing.measurement}"%></h4>
 
-<% if @listing.organic %>
-  <h4>This produce has organic certification</h4>
-<% else %>
-  <h4>This produce does not have organic certification, but still tasty!</h4>
+<h4><%= @listing.organic_check ? "This produce has organic certification" : "This produce does not have organic certification, but still tasty!"%></h4>
+
+<%= link_to "Go to farmer", farmer_path(@listing.farmer) %>
+
+<%= link_to "Edit", edit_farmer_listing_path(@listing.farmer, @listing) if current_user == @listing.farmer %>
+<%= button_to "Delete", farmer_listing_path(@listing.farmer, @listing), method: :delete if current_user == @listing.farmer %>
+
+
+<% if user_or_farmer == "user" %>
+  <div id="purchase_listing_component">
+    <h3>Purchase Produce</h3>
+    <%= form_with(url: new_user_purchase_path(current_user), method: "get", local: true, scope: :purchase) do |f| %>
+      <%= f.number_field :amount, step: 0.5, autofocus: true, placeholder: 'Amount of produce' %><%=@listing.measurement%>
+      <%= f.hidden_field :listing_id, :value => @listing.id %>
+      <%= f.submit(value = "Order") %>
+    <% end %>
+  </div>
 <% end %>
 
-<a href="<%= farmer_path(@listing.farmer) %>">Go to farmer</a>
+

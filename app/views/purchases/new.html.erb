@@ -1,0 +1,36 @@
+<h1>Confirm Purchase</h1>
+<div id="purchase_comfimation_amount">
+  <h2><%= "Amount: #{@purchase.amount} #{@purchase.measurement}" %></h2>
+</div>
+
+<div id="purchase_comfimation_listing">
+    <h3><%= @purchase.listing.title %></h3>
+
+    <% if @purchase.listing.price == 0 %>
+      <h4>FREE</h4>
+    <% else %>
+      <h4><%="£#{@purchase.listing.price} per #{@purchase.listing.measurement}"%></h4>
+    <% end %>
+
+    <% if @purchase.listing.organic_check %>
+      <h4>Organic</h4>
+    <% end %>
+</div>
+
+<div id="purchase_comfimation_total">
+  <h2><%= "Total cost:  £#{@purchase.total_cost}" %></h2>
+</div>
+
+<div id="purchase_comfimation_comfimation">
+  <%= form_with(url: user_purchases_path(current_user.id), method: "post", local: true, scope: :purchase) do |f| %>
+    <%= f.hidden_field :listing_id, :value => @purchase.listing_id %>
+    <%= f.hidden_field :user_id, :value => @purchase.user_id %>
+    <%= f.hidden_field :amount, :value => @purchase.amount %>
+    <%= f.hidden_field :measurement, :value => @purchase.measurement %>
+    <%= f.hidden_field :price, :value => @purchase.price %>
+    <%= f.submit(value = "Comfirm Purchase") %>
+  <% end %>
+
+  <%= link_to "Cancel", listing_path(@purchase.listing) %>
+</div>
+

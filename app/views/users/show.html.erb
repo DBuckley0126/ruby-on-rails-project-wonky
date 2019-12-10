@@ -4,6 +4,18 @@
 
 <h4>Lives at <%= @user.address %></h4>
 
+<h2>Purchase History</h2>
+
+<% @user.purchases.each do |purchase| %>
+  <div id="purchase_preview">
+    <h3><%= purchase.listing.title %></h3>
+    <h4><%= "£#{purchase.total_cost} for #{purchase.amount}#{purchase.measurement}" %><h4>
+    <h4>Date Purchased: <%= purchase.created_at.strftime("%e/%m/%Y") %><h4>
+    <% link_to "Delete", user_purchase_path(@user.id), method: "delete" %>
+    <%= button_to "Delete", user_purchase_path(@user.id, purchase.id), method: :delete %>
+  </div>
+<% end %>
+
 <a href=<%="https://www.google.com/maps/place/#{@user.latitude},#{@user.longitude}/"%>><img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{@user.latitude},#{@user.longitude}&zoom=10&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@user.latitude},#{@user.longitude}"%> alt=<%="Google Map of #{@user.address}"%>></a><br>
 
 <a href="<%= edit_user_path(@user) %>">Edit Account</a>
