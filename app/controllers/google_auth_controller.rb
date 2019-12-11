@@ -1,5 +1,4 @@
 class GoogleAuthController < ApplicationController
-require 'securerandom'
 
   #Successful Google Authentication callback, checks if user exists, redirects to account finalisation page if not
   def new
@@ -18,11 +17,8 @@ require 'securerandom'
 
   # Creates user, setting a secure random password to fulfill validation
   def create
-    random_password = SecureRandom.base64(15)
-
     @user = User.new(google_auth_user_strong_params)
-    @user.password = random_password
-    @user.password_confirmation = random_password
+    @user.add_random_password
 
     if @user.valid?
       @user.save

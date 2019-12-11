@@ -35,5 +35,10 @@ class User < ApplicationRecord
   validates_strength_of :password, :with => :email, :level => :good, on: :create
 
   validates_acceptance_of :terms_of_service, on: :create
-
+  
+  def add_random_password
+    random_password = SecureRandom.base64(15)
+    self.password = random_password
+    self.password_confirmation = random_password
+  end
 end

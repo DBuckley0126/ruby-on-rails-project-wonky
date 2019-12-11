@@ -12,7 +12,10 @@ class Listing < ApplicationRecord
   validates :measurement, presence: { message: 'is required' }
   validates :measurement, inclusion: { in: %w(g kg), message: "is not a valid measurement. Must be 'g' or 'kg'" }
 
+  scope :organic, -> { where(organic: true) }
+
   def organic_check
     self.farmer.organic_certification && self.organic ? true : false
   end
+
 end
