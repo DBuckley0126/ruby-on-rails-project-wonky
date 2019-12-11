@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_oauth2, '1088364901995-hv124dvh8n4tcap43nho4a2sudm5u8j2.apps.googleusercontent.com', 'kuqHk9CGMaQafuctpaHLkzEP'
+  provider :google_oauth2, Rails.application.credentials.google_auth_api_client_id, Rails.application.credentials.google_auth_api_client_secret
   {    :name => "google",
     :scope => ['contacts', 'plus.login', 'plus.me', 'email',
                'profile'],    
@@ -8,3 +8,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     :image_size => 50,
     :access_type => 'offline'  }
 end
+
+
+
