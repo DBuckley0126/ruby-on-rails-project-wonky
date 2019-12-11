@@ -3,7 +3,7 @@ class CreateFarmers < ActiveRecord::Migration[6.0]
     create_table :farmers do |t|
       t.string :name, null: false
       t.string :email, index: true, null: false, unique: true
-      t.string :password_digest, null: false
+      t.string :password_digest
       t.string :image
       t.string :uid
       t.string :farm_name, null: false

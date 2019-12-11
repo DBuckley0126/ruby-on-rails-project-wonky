@@ -6,4 +6,14 @@ module ListingsHelper
     end
     return output_string
   end
+
+  def farmer_number(listing)
+    if @current_farmer == listing.farmer
+      return @farmer_count.to_s
+    else
+      @farmer_count += 1
+      @current_farmer = listing.farmer
+      return @farmer_count.to_s
+    end
+  end
 end

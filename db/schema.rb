@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_162807) do
   create_table "farmers", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "password_digest"
     t.string "image"
     t.string "uid"
     t.string "farm_name", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_162807) do
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "password_digest"
     t.string "image"
     t.string "uid"
     t.string "address", null: false

@@ -1,0 +1,20 @@
+<h1>Finish account by adding address</h1>
+
+<%= form_with model: @user, url: google_create_path, method: :post, local: true do |f| %>
+
+  <%= f.hidden_field :name, :value => @user.name %>
+  <%= f.hidden_field :uid, :value => @user.uid %>
+  <%= f.hidden_field :email, :value => @user.email %>
+  <%= f.hidden_field :image, :value => @user.image %>
+
+  <p><%= display_first_error(@user, :address) %></p>
+  <%= f.text_field :address, autofocus: true, placeholder: 'Full Address' %><br>
+
+  <p><%= display_first_error(@user, :terms_of_service) %></p>
+  <p>Please accept the terms of service <%= f.check_box :terms_of_service %></p>
+  
+  <br>
+  <%= f.submit(value = "Complete Profile") %>
+<% end %>
+
+<%= link_to "Cancel Account Signup", signup_path %>

@@ -6,6 +6,8 @@
   <%= form_with model: @user, local: true do |f| %>
     <%= render partial: 'user_signup_form', locals: {f: f} %>
   <% end %>
+  <br>
+  <%= button_to "Singup with Google", google_login_path %>
 </div>
 
 <div>

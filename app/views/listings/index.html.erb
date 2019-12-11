@@ -25,10 +25,14 @@
 <%= button_to "Refresh", listings_path, method: :get %>
 </div>
 
-<% @listings.each_with_index do |listing, index| %>
+<% @farmer_count = 1 %>
+<% @current_farmer = @listings.first.farmer %>
+
+<% @listings.each do |listing| %>
+
 
   <div class="farm_listing">
-    <h3><b><%= index + 1 %>)</b> <%= listing.title %></h3>
+    <h3><b><%= farmer_number(listing) %>)</b> <%= listing.title %></h3>
     <% if listing.price == 0 %>
       <h4>FREE</h4>
     <% else %>
@@ -49,6 +53,6 @@
 <br>
 
 <% if @listings.count > 0 %>
-<img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&scale=2&size=600x300&maptype=roadmap&key=AIzaSyBphakU7oorNSReCZD5XLrxp1YM8RACqBg&format=png&visual_refresh=true#{map_marker_maker(current_user, @listings)}"%> alt=<%="Google Map of listing locations"%>>
+<img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&scale=2&size=600x300&maptype=roadmap&key=#{Rails.application.credentials.google_api}&format=png&visual_refresh=true#{map_marker_maker(current_user, @listings)}"%> alt=<%="Google Map of listing locations"%>>
 
 <% end %>
