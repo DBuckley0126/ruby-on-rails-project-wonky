@@ -1,4 +1,5 @@
 class FarmersController < ApplicationController
+  before_action :farmer_redirect_check, only: [:edit, :update]
 
   def show
     @farmer = Farmer.find_by_id(params[:id])
@@ -17,12 +18,10 @@ class FarmersController < ApplicationController
   end
 
   def edit
-    farmer_redirect_check
     @farmer = current_user
   end
 
   def update
-    farmer_redirect_check
     @farmer = current_user
     @farmer.assign_attributes(farmer_strong_params)
     if @farmer.valid?

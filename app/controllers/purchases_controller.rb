@@ -1,15 +1,7 @@
 class PurchasesController < ApplicationController
-
-  def index
-    
-  end
-
-  def show
-
-  end
+  before_action :user_redirect_check, only: [:new, :create, :destroy]
 
   def new
-    user_redirect_check
     @user = current_user
     @purchase = Purchase.new(purchase_attributes(params[:purchase][:listing_id], params[:purchase][:amount]))
     redirect_to listing_path(params[:purchase][:listing_id]) if @purchase.invalid?
@@ -17,7 +9,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    user_redirect_check
     @purchase = Purchase.new(purchase_strong_params)
     if @purchase.valid? && @purchase.user_id == current_user.id
       @purchase.save
@@ -28,7 +19,6 @@ class PurchasesController < ApplicationController
   end
 
   def destroy
-    user_redirect_check
     user = current_user
     if params[:user_id].to_i == user.id
       Purchase.find_by_id(params[:id]).destroy
@@ -40,11 +30,7 @@ class PurchasesController < ApplicationController
 
   def purchase_attributes(listing_id, amount)
     listing = Listing.find_by_id(listing_id)
-    if listing
-      {listing_id: listing_id, user_id: current_user.id, amount: amount, price: listing.price, measurement: listing.measurement}
-    else
-      "ERROR"
-    end
+    listing ? {listing_id: listing_id, user_id: current_user.id, amount: amount, price: listing.price, measurement: listing.measurement} : "ERROR"
   end
 
   def purchase_strong_params

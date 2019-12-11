@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :user_redirect_check, only: [:show, :edit, :update]
 
   def show
     user_redirect_check
@@ -18,12 +19,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user_redirect_check
     @user = current_user
   end
 
   def update
-    user_redirect_check
     @user = current_user
     @user.assign_attributes(user_strong_params)
     if @user.valid?

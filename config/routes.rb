@@ -17,11 +17,10 @@ Rails.application.routes.draw do
 
   resources :farmers, only: [:show, :create, :edit, :update] do
     resources :listings
-    resources :purchases, only: [:index, :show]
   end
 
   resources :users, only: [:show, :create, :edit, :update] do
-    resources :purchases
+    resources :purchases, only: [:new, :create, :delete]
   end
 
 

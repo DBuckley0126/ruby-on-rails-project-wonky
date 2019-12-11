@@ -1,6 +1,7 @@
 class GoogleAuthController < ApplicationController
 require 'securerandom'
 
+  #Successful Google Authentication callback, checks if user exists, redirects to account finalisation page if not
   def new
     @user = User.find_by(uid: request.env['omniauth.auth'][:uid])
     if @user
@@ -15,6 +16,7 @@ require 'securerandom'
     end
   end
 
+  # Creates user, setting a secure random password to fulfill validation
   def create
     random_password = SecureRandom.base64(15)
 

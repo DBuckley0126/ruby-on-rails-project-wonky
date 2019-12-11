@@ -1,7 +1,9 @@
 #only index, show
 class ListingsController < ApplicationController
+  before_action :farmer_redirect_check, only: [:new, :create, :edit, :update, :destroy]
 
   def index
+    #checks if params include filter data
     if params.has_key?(:distance) || params.has_key?(:category_id)
       @listings = Listing.all
       params[:distance] == "" ? false : @listings = @listings.select{|listing| listing.farmer.distance_to([current_user.latitude, current_user.longitude]) < params[:distance].to_i }
@@ -19,13 +21,11 @@ class ListingsController < ApplicationController
   end
 
   def new
-    farmer_redirect_check
     @listing = current_user.listings.build
     @categories = Category.all
   end
 
   def create
-    farmer_redirect_check
     @listing = Listing.new(listing_strong_params)
     @listing.farmer = current_user
     if @listing.valid?
@@ -38,14 +38,12 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    farmer_redirect_check
     @listing = Listing.find_by(id: params[:id], farmer_id: params[:farmer_id])
     redirect_to farmer_path(current_user) if !@listing
     @categories = Category.all
   end
 
   def update
-    farmer_redirect_check
     @listing = Listing.find_by(id: params[:id], farmer_id: params[:farmer_id])
     @listing.assign_attributes(listing_strong_params)
     if @listing.valid?
@@ -58,7 +56,6 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    farmer_redirect_check
     farmer = current_user
     if params[:farmer_id].to_i == farmer.id
       Listing.find_by_id(params[:id]).destroy
