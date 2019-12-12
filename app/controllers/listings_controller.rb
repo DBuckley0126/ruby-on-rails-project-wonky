@@ -8,6 +8,7 @@ class ListingsController < ApplicationController
       @listings = Listing.all
       params[:distance] == "" ? false : @listings = @listings.select{|listing| listing.farmer.distance_to([current_user.latitude, current_user.longitude]) < params[:distance].to_i }
       params[:category_id] == "" ? false : @listings = @listings.select{|listing| listing.category_id == params[:category_id].to_i}
+      @listings = @listings.organic if params[:organic]
       render 'listings/index'
     else
       @listings = Listing.all

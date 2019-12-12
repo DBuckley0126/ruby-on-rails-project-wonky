@@ -20,6 +20,7 @@
 <%= form_with(url: listings_path, method: 'get', local: true) do %>
   <%= select_tag(:distance, options_for_select([['5 miles', 5],['10 miles', 10],['15 miles', 15],['20 miles', 20],['30 miles', 30],['40 miles', 40],['50 miles', 50]], params[:distance].to_i), prompt: "Select distance") %>
   <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name, params[:category_id].to_i), prompt: "Select Category") %>
+  <p>Organic only<%= check_box_tag 'organic', true, params[:organic] %></p>
   <%= submit_tag(value = "Filter")%>
 <% end %>
 <%= button_to "Refresh", listings_path, method: :get %>
