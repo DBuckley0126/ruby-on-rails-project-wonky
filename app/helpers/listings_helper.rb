@@ -2,7 +2,9 @@ module ListingsHelper
 
   # Returns marker url paramaters for google map api
   def map_marker_maker(user, listings)
-    output_string = "&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{user.latitude},#{user.longitude}"
+    output_string = "" if !user
+    output_string = "&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{user.latitude},#{user.longitude}" if user
+
     listings.uniq{ |listing| listing.farmer }.each_with_index do |listing, index|
       output_string += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:#{index + 1}%7C#{listing.farmer.latitude},#{listing.farmer.longitude}"
     end

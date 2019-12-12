@@ -44,7 +44,7 @@
     <% end %>
     
     <%= link_to "View Listing", listing_path(listing) %>
-    <%= link_to "Edit", edit_farmer_listing_path(current_user, listing) if current_user == @farmer %>
+    <%= link_to "Edit", edit_farmer_listing_path(current_user, listing) if current_user == listing.farmer %>
   </div>
 
 <% end %>
@@ -52,7 +52,13 @@
 <br>
 <br>
 
-<% if @listings.count > 0 %>
+<% if @listings.count > 0 && current_user %>
 <img src=<%="https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&scale=2&size=600x300&maptype=roadmap&key=#{Rails.application.credentials.google_api}&format=png&visual_refresh=true#{map_marker_maker(current_user, @listings)}"%> alt=<%="Google Map of listing locations"%>>
 
 <% end %>
+
+<% if @listings.count > 0 && !current_user %>
+<img src=<%="https://maps.googleapis.com/maps/api/staticmap?&scale=2&size=600x300&maptype=roadmap&key=#{Rails.application.credentials.google_api}&format=png&visual_refresh=true#{map_marker_maker(current_user, @listings)}"%> alt=<%="Google Map of listing locations"%>>
+
+<% end %>
+
