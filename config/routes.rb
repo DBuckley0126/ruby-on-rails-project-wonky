@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :listings, only: [:index, :show]
-  resources :sessions, only: [:create, :delete]
+  resources :sessions, only: [:create, :destroy]
 
   root :to => "listings#index"
   
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :create, :edit, :update] do
-    resources :purchases, only: [:new, :create, :delete]
+    resources :purchases, only: [:new, :create, :destroy]
   end
 
 

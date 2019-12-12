@@ -15,7 +15,6 @@
     <h3><%= purchase.listing.title %></h3>
     <h4><%= "£#{purchase.total_cost} for #{purchase.amount}#{purchase.measurement}" %><h4>
     <h4>Date Purchased: <%= purchase.created_at.strftime("%e/%m/%Y") %><h4>
-    <% link_to "Delete", user_purchase_path(@user.id), method: "delete" %>
     <%= button_to "Delete", user_purchase_path(@user.id, purchase.id), method: :delete %>
   </div>
 <% end %>
